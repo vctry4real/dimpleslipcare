@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .row2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tok { display:flex; align-items:center; gap: 12px; padding: 10px 12px; border-radius: 12px; background: var(--bg-1); }
+  .chip { width: 36px; height: 36px; border-radius: 10px; box-shadow: var(--shadow-1); border: 1px solid var(--line); }
+  .tok .name { font-size: 12px; font-weight: 600; color: var(--fg-1); }
+  .tok .sub { font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="row2">
+    <div class="tok"><div class="chip" style="background:#b94a68;"></div><div><div class="name">Accent</div><div class="sub">--accent · blush-700</div></div></div>
+    <div class="tok"><div class="chip" style="background:#b88566;"></div><div><div class="name">Accent 2</div><div class="sub">--accent-2 · rosegold</div></div></div>
+    <div class="tok"><div class="chip" style="background:#fefafa;"></div><div><div class="name">BG 1 — Canvas</div><div class="sub">--bg-1 · blush-50</div></div></div>
+    <div class="tok"><div class="chip" style="background:#fdf1f2;"></div><div><div class="name">BG 2 — Surface</div><div class="sub">--bg-2 · blush-100</div></div></div>
+    <div class="tok"><div class="chip" style="background:#fbe4e7;"></div><div><div class="name">BG 3 — Raised</div><div class="sub">--bg-3 · blush-200</div></div></div>
+    <div class="tok"><div class="chip" style="background:#8c2d4a;"></div><div><div class="name">BG Deep</div><div class="sub">--bg-deep · blush-800</div></div></div>
+    <div class="tok"><div class="chip" style="background:#2a1822;"></div><div><div class="name">FG 1 — Body</div><div class="sub">--fg-1 · ink</div></div></div>
+    <div class="tok"><div class="chip" style="background:#5a3a48;"></div><div><div class="name">FG 2 — Secondary</div><div class="sub">--fg-2 · ink-soft</div></div></div>
+    <div class="tok"><div class="chip" style="background:#8a6b76;"></div><div><div class="name">FG 3 — Tertiary</div><div class="sub">--fg-3 · ink-mute</div></div></div>
+    <div class="tok"><div class="chip" style="background:#f1dde2;"></div><div><div class="name">Line</div><div class="sub">--line · hairline</div></div></div>
+  </div>
+</div>
+</body></html>

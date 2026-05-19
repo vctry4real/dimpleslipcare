@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .tile {
+    display: flex; align-items: center; gap: 18px;
+    background: var(--pearl);
+    border-radius: var(--r-lg);
+    padding: 16px 20px;
+    box-shadow: var(--shadow-1);
+    border: 1px solid var(--line-soft);
+  }
+  .num {
+    width: 44px; height: 44px;
+    border-radius: 999px;
+    background: var(--grad-petal);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-serif); font-style: italic;
+    font-size: 22px; color: var(--blush-800);
+    box-shadow: var(--shadow-inset-gloss);
+    flex-shrink: 0;
+  }
+  .meta { flex: 1; }
+  .meta .ttl { font-family: var(--font-serif); font-size: 18px; color: var(--ink); }
+  .meta .sub { font-family: var(--font-sans); font-size: 13px; color: var(--fg-3); margin-top: 2px; }
+  .arrow {
+    width: 32px; height: 32px; border-radius: 999px;
+    background: var(--blush-200); color: var(--blush-800);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="display:flex; flex-direction: column; gap: 10px;">
+    <div class="tile">
+      <div class="num">i</div>
+      <div class="meta"><div class="ttl">Lipcare formulation training</div><div class="sub">Five modules · live + recorded · real recipes</div></div>
+      <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </div>
+    <div class="tile">
+      <div class="num">ii</div>
+      <div class="meta"><div class="ttl">Product making</div><div class="sub">Hands-on batch: scrub, balm, gloss</div></div>
+      <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </div>
+    <div class="tile">
+      <div class="num">iii</div>
+      <div class="meta"><div class="ttl">Branding guide & launch support</div><div class="sub">Visual identity, packaging, first 100 customers · certificate at the end</div></div>
+      <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </div>
+  </div>
+  <div class="row" style="justify-content:space-between; margin-top:14px;">
+    <span class="label">Training list-item · numeral medallion</span>
+    <span class="mono">--r-lg · roman numerals · grad-petal chip</span>
+  </div>
+</div>
+</body></html>

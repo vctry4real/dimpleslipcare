@@ -1,0 +1,284 @@
+/* =========================================================================
+   Dimples Lipcare — Colors & Type
+   Soft baby pink • white • touches of deep pink
+   Glossy, soft, classy, feminine, elegant, beauty-focused
+   ========================================================================= */
+
+/* -------- Webfonts ---------------------------------------------------------
+   Cormorant Garamond   → display & editorial serifs (Google Fonts)
+   Jost                  → subheads, UI, buttons (Google Fonts)
+   Love Ya Like A Sister → brand signature / accent  (LOCAL, user-supplied)
+   ------------------------------------------------------------------------ */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap");
+
+@font-face {
+  font-family: "Love Ya Like A Sister";
+  src: url("fonts/LoveYaLikeASister-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* =========================================================
+     COLOR — Pinks (the brand spine)
+     Baby-pink core to deep rose accents.
+     ========================================================= */
+  --blush-50:  #fefafa;   /* near-white, the page canvas */
+  --blush-100: #fdf1f2;   /* soft cream-pink wash */
+  --blush-200: #fbe4e7;   /* baby pink — the hero shade */
+  --blush-300: #f7d2d8;   /* soft petal */
+  --blush-400: #f0b8c2;   /* rose petal */
+  --blush-500: #e89aa9;   /* dusty rose (mid) */
+  --blush-600: #d97189;   /* rose */
+  --blush-700: #b94a68;   /* deep pink */
+  --blush-800: #8c2d4a;   /* wine rose */
+  --blush-900: #5a1a2e;   /* near-black plum */
+
+  /* =========================================================
+     COLOR — Neutrals & support
+     Warm-leaning to keep cosmetics aesthetic.
+     ========================================================= */
+  --pearl:      #ffffff;
+  --cream:      #fff8f4;   /* warm white, like ivory packaging */
+  --champagne:  #f5e9dc;   /* faint metallic warmth */
+  --rosegold:   #d9a98c;   /* rose-gold foil accent */
+  --rosegold-2: #b88566;   /* darker rose gold for type/borders */
+  --ink:        #2a1822;   /* deep aubergine — body text */
+  --ink-soft:   #5a3a48;   /* secondary text */
+  --ink-mute:   #8a6b76;   /* tertiary / hint text */
+  --line:       #f1dde2;   /* hairline borders */
+  --line-soft:  #f9ecef;   /* faint divider */
+
+  /* =========================================================
+     COLOR — Semantic
+     ========================================================= */
+  --fg-1:       var(--ink);
+  --fg-2:       var(--ink-soft);
+  --fg-3:       var(--ink-mute);
+  --fg-on-pink: var(--blush-900);
+  --fg-on-deep: var(--cream);
+
+  --bg-1:       var(--blush-50);    /* canvas */
+  --bg-2:       var(--blush-100);   /* surface */
+  --bg-3:       var(--blush-200);   /* raised */
+  --bg-card:    var(--pearl);
+  --bg-deep:    var(--blush-800);   /* deep CTA / footer */
+
+  --accent:     var(--blush-700);   /* primary accent (deep pink) */
+  --accent-2:   var(--rosegold-2);  /* secondary accent (rose gold) */
+
+  /* Success / warn — kept on-brand (no out-of-palette greens/blues) */
+  --ok:         #6f8e6a;
+  --warn:       #c98a2b;
+  --danger:     var(--blush-800);
+
+  /* =========================================================
+     COLOR — Gradients & glosses (signature)
+     ========================================================= */
+  --grad-petal:  linear-gradient(135deg, #fdf1f2 0%, #fbe4e7 45%, #f0b8c2 100%);
+  --grad-gloss:  linear-gradient(160deg, #ffffff 0%, #fbe4e7 35%, #f7d2d8 60%, #ffffff 100%);
+  --grad-deep:   linear-gradient(135deg, #d97189 0%, #b94a68 50%, #8c2d4a 100%);
+  --grad-rosegold: linear-gradient(135deg, #f5e9dc 0%, #d9a98c 50%, #b88566 100%);
+  /* The "lip gloss" highlight — a soft white sheen used on hero artworks */
+  --grad-sheen:  radial-gradient(120% 60% at 30% 20%, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 55%);
+
+  /* =========================================================
+     RADII — generous, glossy, never harsh
+     ========================================================= */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* =========================================================
+     SHADOWS — soft, pink-tinted (never neutral gray)
+     ========================================================= */
+  --shadow-1: 0 1px 2px rgba(140, 45, 74, 0.06), 0 1px 1px rgba(140, 45, 74, 0.04);
+  --shadow-2: 0 6px 16px -6px rgba(185, 74, 104, 0.18), 0 2px 4px rgba(140, 45, 74, 0.06);
+  --shadow-3: 0 18px 40px -16px rgba(185, 74, 104, 0.28), 0 4px 8px rgba(140, 45, 74, 0.06);
+  --shadow-4: 0 32px 64px -24px rgba(140, 45, 74, 0.32), 0 8px 16px rgba(140, 45, 74, 0.08);
+  /* "Glass" shadow used on product cards / floating chips */
+  --shadow-glass: 0 8px 32px rgba(185, 74, 104, 0.16), inset 0 1px 0 rgba(255,255,255,.6);
+  --shadow-inset-gloss: inset 0 2px 8px rgba(255,255,255,.7), inset 0 -2px 12px rgba(217,113,137,.18);
+
+  /* =========================================================
+     SPACING — 4pt scale
+     ========================================================= */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  20px;
+  --s-6:  24px;
+  --s-8:  32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+
+  /* =========================================================
+     TYPE — families, scale, weights
+     ========================================================= */
+  --font-serif:  "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans:   "Jost", "Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-script: "Love Ya Like A Sister", "Pinyon Script", "Allura", cursive;
+
+  /* Display scale — serif italic for highest editorial moments */
+  --size-display-xl: clamp(64px, 9vw, 128px);
+  --size-display-l:  clamp(48px, 6vw, 88px);
+  --size-display-m:  clamp(36px, 4.5vw, 64px);
+
+  /* Headings */
+  --size-h1: 48px;
+  --size-h2: 36px;
+  --size-h3: 28px;
+  --size-h4: 22px;
+  --size-h5: 18px;
+
+  /* Body & UI */
+  --size-lead:   20px;
+  --size-body:   16px;
+  --size-small:  14px;
+  --size-micro:  12px;
+  --size-eyebrow: 11px;
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.2;
+  --lh-base:   1.55;
+  --lh-loose:  1.8;
+
+  --tracking-tight:   -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.08em;
+  --tracking-wider:   0.18em;   /* eyebrow / button labels */
+  --tracking-widest:  0.32em;   /* tiny caps */
+
+  /* =========================================================
+     MOTION
+     ========================================================= */
+  --ease-soft:  cubic-bezier(.4, 0, .2, 1);
+  --ease-out:   cubic-bezier(.16, 1, .3, 1);
+  --ease-glow:  cubic-bezier(.22, 1, .36, 1);
+  --t-fast: 140ms;
+  --t-med:  240ms;
+  --t-slow: 420ms;
+}
+
+/* =========================================================
+   SEMANTIC TYPE — drop-in element styling
+   ========================================================= */
+.serif      { font-family: var(--font-serif); }
+.sans       { font-family: var(--font-sans); }
+.script     { font-family: var(--font-script); }
+
+.display-xl,
+.display-l,
+.display-m {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+  color: var(--fg-1);
+}
+.display-xl { font-size: var(--size-display-xl); font-style: italic; }
+.display-l  { font-size: var(--size-display-l); }
+.display-m  { font-size: var(--size-display-m); }
+
+h1, .h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--size-h1);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--size-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--size-h3);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--size-h4);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+  margin: 0;
+}
+h5, .h5 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--size-h5);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: var(--size-lead);
+  line-height: var(--lh-base);
+  color: var(--fg-2);
+}
+
+p, .p {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--size-body);
+  line-height: var(--lh-base);
+  color: var(--fg-2);
+  margin: 0;
+}
+.small  { font-size: var(--size-small); }
+.micro  { font-size: var(--size-micro); }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--size-eyebrow);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.signature {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--accent);
+  line-height: 1;
+}
+
+/* =========================================================
+   GLOSS / SHINE utility — used on chips, logos, product hits
+   ========================================================= */
+.gloss-overlay {
+  position: relative;
+  isolation: isolate;
+}
+.gloss-overlay::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--grad-sheen);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}

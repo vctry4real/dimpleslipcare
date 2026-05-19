@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .row { display:flex; align-items:flex-end; gap: 6px; }
+  .bar { background: var(--blush-400); border-radius: 4px; position: relative; box-shadow: var(--shadow-1); }
+  .bar::after { content: attr(data-name); position: absolute; bottom: -18px; left: 0; right: 0; text-align:center; font-family: ui-monospace, Menlo, monospace; font-size: 9px; color: var(--fg-3); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="display:flex; align-items:flex-end; gap: 16px; padding-bottom: 22px;">
+    <div class="bar" style="width: 24px; height: 4px;" data-name="1·4"></div>
+    <div class="bar" style="width: 24px; height: 8px;" data-name="2·8"></div>
+    <div class="bar" style="width: 24px; height: 12px;" data-name="3·12"></div>
+    <div class="bar" style="width: 24px; height: 16px;" data-name="4·16"></div>
+    <div class="bar" style="width: 24px; height: 20px;" data-name="5·20"></div>
+    <div class="bar" style="width: 24px; height: 24px;" data-name="6·24"></div>
+    <div class="bar" style="width: 24px; height: 32px;" data-name="8·32"></div>
+    <div class="bar" style="width: 24px; height: 40px;" data-name="10·40"></div>
+    <div class="bar" style="width: 24px; height: 48px;" data-name="12·48"></div>
+    <div class="bar" style="width: 24px; height: 64px;" data-name="16·64"></div>
+    <div class="bar" style="width: 24px; height: 80px;" data-name="20·80"></div>
+    <div class="bar" style="width: 24px; height: 96px;" data-name="24·96"></div>
+  </div>
+  <div class="row" style="justify-content:space-between; align-items:baseline; margin-top:8px;">
+    <span class="label">Spacing · 4pt scale</span>
+    <span class="mono">--s-1 → --s-24</span>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\.claude\\\\worktrees\\\\zen-joliot-5b26b7\" -Force)",
+      "Bash(Select-Object Name, Mode)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\.claude\\\\worktrees\\\\zen-joliot-5b26b7\\\\design-extract\\\\dimples-lipcare-design-system\\\\chats\\\\\" -File)",
+      "PowerShell($pkg = Get-Content \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\node_modules\\\\next\\\\package.json\" | ConvertFrom-Json; Write-Host \"Next.js version: $\\($pkg.version\\)\"; Get-ChildItem \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\node_modules\\\\next\\\\dist\\\\docs\" -ErrorAction SilentlyContinue | Select-Object Name)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\.claude\\\\worktrees\\\\zen-joliot-5b26b7\\\\.next\" -ErrorAction SilentlyContinue)",
+      "Bash(Write-Host \"Cache cleared\")",
+      "Bash(ls \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\node_modules\\\\next\\\\dist\" | head -20)",
+      "Bash(mkdir -p \"C:\\\\Users\\\\johns\\\\Documents\\\\Projects\\\\dimpleslipcare\\\\.claude\\\\worktrees\\\\zen-joliot-5b26b7\\\\app\\\\products\\\\[slug]\")",
+      "Bash(curl -s \"http://localhost:57820/products/velvet-lip-balm\")",
+      "Bash(Select-String -Pattern \"Velvet Lip Balm|pdp-name|pdp-price|error\")",
+      "Bash(Select-Object -First 10)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:57820/sitemap.xml\")",
+      "Bash(curl -s -o /dev/null -w \" %{http_code}\" \"http://localhost:57820/robots.txt\")",
+      "Bash(curl -s -o /dev/null -w \" %{http_code}\" \"http://localhost:57820/not-found-test-page\")",
+      "Bash(wait)",
+      "Bash(curl -s \"http://localhost:57820/\")",
+      "Bash(curl -s \"http://localhost:57820/products/pink-lips-treatment\")",
+      "Bash(curl -s \"http://localhost:57820/not-found-test-page\")",
+      "Bash(git init *)"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display:flex; gap: 28px; align-items:center; justify-content: space-around; padding: 14px 0; }
+  .item { display:flex; flex-direction: column; align-items:center; gap: 8px; }
+  .item .nm { font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--ink); }
+  .item .mono { font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: var(--fg-3); }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  @keyframes twinkle { 0%, 100% { opacity: .6; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.1); } }
+  .heart { animation: pulse 2.4s ease-in-out infinite; }
+  .spark { animation: twinkle 3.5s ease-in-out infinite; }
+  .spark.delay { animation-delay: 1.2s; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid">
+    <div class="item"><img class="heart" src="../assets/motif-heart.svg" width="72" height="68"><div class="nm">Heart</div><div class="mono">motif-heart.svg</div></div>
+    <div class="item"><img class="spark" src="../assets/motif-sparkle.svg" width="60" height="60"><div class="nm">Sparkle</div><div class="mono">motif-sparkle.svg</div></div>
+    <div class="item"><img class="spark delay" src="../assets/motif-sparkle.svg" width="40" height="40"><div class="nm">Sparkle sm</div><div class="mono">@40px</div></div>
+    <div class="item"><img src="../assets/motif-droplet.svg" width="48" height="64"><div class="nm">Droplet</div><div class="mono">motif-droplet.svg</div></div>
+  </div>
+  <div class="row" style="justify-content:space-between; margin-top: 10px;">
+    <span class="label">Decorative motifs · always SVG, never emoji</span>
+    <span class="mono">heart 2.4s pulse · sparkle 3.5s twinkle</span>
+  </div>
+</div>
+</body></html>

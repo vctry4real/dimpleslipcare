@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Dimples Lipcare monogram">
+  <defs>
+    
+    <radialGradient id="mgBg" cx="35%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#ffffff"></stop>
+      <stop offset="55%" stop-color="#fbe4e7"></stop>
+      <stop offset="100%" stop-color="#f0b8c2"></stop>
+    </radialGradient>
+    <linearGradient id="mgSheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".75"></stop>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0"></stop>
+    </linearGradient>
+    <linearGradient id="mgInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b94a68"></stop>
+      <stop offset="100%" stop-color="#5a1a2e"></stop>
+    </linearGradient>
+  </defs>
+
+  <circle cx="60" cy="60" r="58" fill="#f7d2d8" opacity=".5"></circle>
+  <circle cx="60" cy="60" r="52" fill="url(#mgBg)"></circle>
+  <ellipse cx="60" cy="38" rx="40" ry="20" fill="url(#mgSheen)"></ellipse>
+  <text x="60" y="80" text-anchor="middle" font-family="&#39;Love Ya Like A Sister&#39;,&#39;Cormorant Garamond&#39;,serif" font-size="72" fill="url(#mgInk)">D</text>
+  <circle cx="60" cy="60" r="52" fill="none" stroke="#b94a68" stroke-width="0.75" opacity=".6"></circle>
+</svg>

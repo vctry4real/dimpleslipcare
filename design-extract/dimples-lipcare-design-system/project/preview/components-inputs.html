@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .field {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .field label { font-family: var(--font-sans); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--fg-3); }
+  .field input, .field textarea {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--pearl);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color var(--t-med), box-shadow var(--t-med);
+  }
+  .field input:focus { border-color: var(--blush-400); box-shadow: 0 0 0 4px rgba(217,113,137,.18); }
+  .field--focused input { border-color: var(--blush-400); box-shadow: 0 0 0 4px rgba(217,113,137,.18); }
+  .check {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-sans); font-size: 14px; color: var(--ink);
+  }
+  .check .box { width: 20px; height: 20px; border-radius: 6px; background: var(--grad-deep); display: inline-flex; align-items:center; justify-content:center; box-shadow: var(--shadow-1); }
+  .check svg { width: 12px; height: 12px; color: #fff8f4; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" value="you@dimples.co" />
+    </div>
+    <div class="field field--focused">
+      <label>Phone</label>
+      <input type="tel" placeholder="0903 879 6354" />
+    </div>
+    <div class="field" style="grid-column: 1 / -1;">
+      <label>Your message</label>
+      <textarea rows="2" placeholder="Tell us about your skin & lip goals..."></textarea>
+    </div>
+  </div>
+  <div style="margin-top: 14px; display:flex; gap: 18px; align-items:center;">
+    <span class="check"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></span> Subscribe to product drops</span>
+    <span class="mono" style="margin-left:auto;">Inputs · pearl card · 16px radius · pink focus ring</span>
+  </div>
+</div>
+</body></html>

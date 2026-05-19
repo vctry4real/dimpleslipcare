@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 44" role="img" aria-label="heart">
+  <defs>
+    <linearGradient id="hG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdf1f2"></stop>
+      <stop offset="50%" stop-color="#f0b8c2"></stop>
+      <stop offset="100%" stop-color="#b94a68"></stop>
+    </linearGradient>
+    <linearGradient id="hSheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".95"></stop>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+  <path d="M24 40 C 8 28, 2 18, 6 10 C 9 4, 16 3, 20 7 L 24 12 L 28 7 C 32 3, 39 4, 42 10 C 46 18, 40 28, 24 40 Z" fill="url(#hG)" stroke="#b94a68" stroke-width="0.5" stroke-opacity=".4"></path>
+  
+  <path d="M14 9 C 18 7, 22 10, 21 14 C 20 17, 15 18, 13 15 Z" fill="url(#hSheen)"></path>
+</svg>

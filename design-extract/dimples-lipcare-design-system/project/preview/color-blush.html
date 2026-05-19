@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .swatches { display:grid; grid-template-columns: repeat(10, 1fr); gap: 8px; }
+  .sw { aspect-ratio: 1 / 1.15; border-radius: 12px; display:flex; flex-direction:column; justify-content:flex-end; padding: 8px; box-shadow: var(--shadow-1); }
+  .sw .n { font-size: 9px; font-weight: 600; letter-spacing: .08em; }
+  .sw .h { font-family: ui-monospace, Menlo, monospace; font-size: 9px; opacity: .7; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="swatches">
+    <div class="sw" style="background:#fefafa; color:#5a1a2e;"><div class="n">50</div><div class="h">#fefafa</div></div>
+    <div class="sw" style="background:#fdf1f2; color:#5a1a2e;"><div class="n">100</div><div class="h">#fdf1f2</div></div>
+    <div class="sw" style="background:#fbe4e7; color:#5a1a2e;"><div class="n">200</div><div class="h">#fbe4e7</div></div>
+    <div class="sw" style="background:#f7d2d8; color:#5a1a2e;"><div class="n">300</div><div class="h">#f7d2d8</div></div>
+    <div class="sw" style="background:#f0b8c2; color:#5a1a2e;"><div class="n">400</div><div class="h">#f0b8c2</div></div>
+    <div class="sw" style="background:#e89aa9; color:#5a1a2e;"><div class="n">500</div><div class="h">#e89aa9</div></div>
+    <div class="sw" style="background:#d97189; color:#fff;"><div class="n">600</div><div class="h">#d97189</div></div>
+    <div class="sw" style="background:#b94a68; color:#fff;"><div class="n">700</div><div class="h">#b94a68</div></div>
+    <div class="sw" style="background:#8c2d4a; color:#fff;"><div class="n">800</div><div class="h">#8c2d4a</div></div>
+    <div class="sw" style="background:#5a1a2e; color:#fff;"><div class="n">900</div><div class="h">#5a1a2e</div></div>
+  </div>
+  <div class="row" style="margin-top:14px; justify-content:space-between;">
+    <span class="label">Blush — the brand spine</span>
+    <span class="mono">--blush-50 → --blush-900</span>
+  </div>
+</div>
+</body></html>

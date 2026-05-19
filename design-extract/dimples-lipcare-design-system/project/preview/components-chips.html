@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    box-shadow: var(--shadow-1);
+  }
+  .chip--pearl { background: var(--pearl); color: var(--blush-800); border: 1px solid var(--line); }
+  .chip--blush { background: var(--blush-200); color: var(--blush-900); }
+  .chip--deep  { background: var(--grad-deep); color: #fff8f4; }
+  .chip--rose  { background: var(--grad-rosegold); color: var(--blush-900); }
+  .chip--glass { background: rgba(255,255,255,.7); backdrop-filter: blur(12px); color: var(--blush-900); border: 1px solid rgba(255,255,255,.7); }
+  .chip svg { width: 10px; height: 10px; }
+  .badge-new { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; padding: 4px 10px; background: var(--ink); color: var(--cream); border-radius: 999px; }
+  .price-pill { font-family: var(--font-serif); font-style: italic; font-size: 20px; background: rgba(255,255,255,.78); backdrop-filter: blur(10px); color: var(--blush-900); padding: 8px 18px; border-radius: 999px; box-shadow: var(--shadow-2); border: 1px solid rgba(255,255,255,.7); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+    <span class="chip chip--pearl">Lip Scrub</span>
+    <span class="chip chip--blush">Daily care</span>
+    <span class="chip chip--deep">Best-seller</span>
+    <span class="chip chip--rose">Limited batch</span>
+    <span class="chip chip--glass">In stock</span>
+    <span class="badge-new">New</span>
+    <span class="price-pill">₦8,500</span>
+  </div>
+  <div class="row" style="justify-content:space-between; margin-top:14px;">
+    <span class="label">Chips · badges · frosted price-pill</span>
+    <span class="mono">backdrop-filter · pill radii</span>
+  </div>
+</div>
+</body></html>

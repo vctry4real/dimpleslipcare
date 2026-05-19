@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .gr { display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .gtile { height: 110px; border-radius: 18px; box-shadow: var(--shadow-2); position: relative; overflow: hidden; padding: 12px; display:flex; flex-direction:column; justify-content:flex-end; }
+  .gtile .nm { font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--ink); line-height: 1; }
+  .gtile .mono { color: var(--ink); opacity: .55; }
+  .gtile.deep .nm, .gtile.deep .mono { color: #fff8f4; }
+  .gtile.deep .mono { opacity: .75; }
+  .sheen { position: absolute; inset: 0; background: var(--grad-sheen); pointer-events:none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="gr">
+    <div class="gtile" style="background: var(--grad-petal);">
+      <div class="sheen"></div>
+      <div class="nm">Petal</div>
+      <div class="mono">--grad-petal · hero washes</div>
+    </div>
+    <div class="gtile" style="background: var(--grad-gloss);">
+      <div class="sheen"></div>
+      <div class="nm">Gloss</div>
+      <div class="mono">--grad-gloss · logo, sheens</div>
+    </div>
+    <div class="gtile deep" style="background: var(--grad-deep);">
+      <div class="sheen"></div>
+      <div class="nm">Deep</div>
+      <div class="mono">--grad-deep · CTAs, footer</div>
+    </div>
+    <div class="gtile" style="background: var(--grad-rosegold);">
+      <div class="sheen"></div>
+      <div class="nm">Rose gold</div>
+      <div class="mono">--grad-rosegold · foil accents</div>
+    </div>
+  </div>
+</div>
+</body></html>

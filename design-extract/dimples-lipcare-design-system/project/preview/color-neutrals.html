@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display:grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .sw { aspect-ratio: 1 / 1.1; border-radius: 12px; display:flex; flex-direction:column; justify-content:flex-end; padding: 10px; box-shadow: var(--shadow-1); border: 1px solid var(--line); }
+  .sw .n { font-size: 10px; font-weight: 600; }
+  .sw .h { font-family: ui-monospace, Menlo, monospace; font-size: 9px; opacity: .7; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid">
+    <div class="sw" style="background:#ffffff; color:#5a1a2e;"><div class="n">Pearl</div><div class="h">#ffffff</div></div>
+    <div class="sw" style="background:#fff8f4; color:#5a1a2e;"><div class="n">Cream</div><div class="h">#fff8f4</div></div>
+    <div class="sw" style="background:#f5e9dc; color:#5a1a2e;"><div class="n">Champagne</div><div class="h">#f5e9dc</div></div>
+    <div class="sw" style="background:#d9a98c; color:#fff;"><div class="n">Rose Gold</div><div class="h">#d9a98c</div></div>
+    <div class="sw" style="background:#b88566; color:#fff;"><div class="n">Rose Gold 2</div><div class="h">#b88566</div></div>
+    <div class="sw" style="background:#2a1822; color:#fefafa;"><div class="n">Ink</div><div class="h">#2a1822</div></div>
+  </div>
+  <div class="row" style="margin-top:14px; justify-content:space-between;">
+    <span class="label">Warm neutrals · No pure black</span>
+    <span class="mono">--pearl · --cream · --champagne · --rosegold · --ink</span>
+  </div>
+</div>
+</body></html>

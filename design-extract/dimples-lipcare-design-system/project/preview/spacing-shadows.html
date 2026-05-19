@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tile { aspect-ratio: 1 / 0.75; background: var(--pearl); border-radius: 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+  .tile .nm { font-family: var(--font-serif); font-style: italic; font-size: 18px; color: var(--ink); }
+  .tile .mono { font-family: ui-monospace, Menlo, monospace; font-size: 9px; color: var(--fg-3); }
+  .s1 { box-shadow: var(--shadow-1); }
+  .s2 { box-shadow: var(--shadow-2); }
+  .s3 { box-shadow: var(--shadow-3); }
+  .s4 { box-shadow: var(--shadow-4); }
+  .sg { box-shadow: var(--shadow-glass); }
+  .sig { box-shadow: var(--shadow-inset-gloss); background: var(--blush-200); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid" style="padding: 8px 8px 16px;">
+    <div class="tile s1"><div class="nm">1</div><div class="mono">--shadow-1</div></div>
+    <div class="tile s2"><div class="nm">2</div><div class="mono">--shadow-2</div></div>
+    <div class="tile s3"><div class="nm">3</div><div class="mono">--shadow-3</div></div>
+    <div class="tile s4"><div class="nm">4</div><div class="mono">--shadow-4</div></div>
+    <div class="tile sg"><div class="nm">glass</div><div class="mono">--shadow-glass</div></div>
+    <div class="tile sig"><div class="nm">gloss</div><div class="mono">inset · --shadow-inset-gloss</div></div>
+  </div>
+  <div class="row" style="justify-content:space-between;">
+    <span class="label">Shadows · pink-tinted, never gray</span>
+    <span class="mono">rgba(140, 45, 74, …)</span>
+  </div>
+</div>
+</body></html>
