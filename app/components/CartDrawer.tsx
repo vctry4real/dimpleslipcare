@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useCart } from '../context/CartContext'
 
 function fmt(n: number) {
@@ -7,7 +8,13 @@ function fmt(n: number) {
 }
 
 export default function CartDrawer() {
+  const router = useRouter()
   const { items, total, isOpen, closeCart, removeItem, updateQty } = useCart()
+
+  function goToCheckout() {
+    closeCart()
+    router.push('/checkout')
+  }
 
   return (
     <>
@@ -62,7 +69,7 @@ export default function CartDrawer() {
               <span className="cart-subtotal-label">Subtotal</span>
               <span className="cart-subtotal-value">{fmt(total)}</span>
             </div>
-            <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+            <button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={goToCheckout}>
               Checkout →
             </button>
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: 11, color: 'var(--fg-3)', textAlign: 'center', marginTop: 'var(--s-3)' }}>
