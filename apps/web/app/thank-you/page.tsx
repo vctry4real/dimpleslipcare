@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ThankYouContent from './ThankYouContent'
@@ -13,7 +14,9 @@ export default function ThankYouPage() {
   return (
     <div className="site">
       <SiteHeader />
-      <ThankYouContent />
+      <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+        <ThankYouContent />
+      </Suspense>
       <SiteFooter />
     </div>
   )

@@ -7,6 +7,8 @@ export interface CartItem {
   price: string
   priceNum: number
   qty: number
+  /** DB UUID — populated when the product is fetched from the API */
+  productId?: string
 }
 
 interface CartCtx {
@@ -14,7 +16,8 @@ interface CartCtx {
   count: number
   total: number
   isOpen: boolean
-  addItem: (name: string, price: string, priceNum: number) => void
+  /** productId is optional — pass it once products are wired to the API */
+  addItem: (name: string, price: string, priceNum: number, productId?: string) => void
   removeItem: (name: string) => void
   updateQty: (name: string, qty: number) => void
   clearCart: () => void
@@ -24,19 +27,19 @@ interface CartCtx {
 
 const CartContext = createContext<CartCtx>({
   items: [], count: 0, total: 0, isOpen: false,
-  addItem: () => {}, removeItem: () => {}, updateQty: () => {}, clearCart: () => {},
-  openCart: () => {}, closeCart: () => {},
+  addItem: () => {}, removeItem: () => {}, updateQty: () => {},
+  clearCart: () => {}, openCart: () => {}, closeCart: () => {},
 })
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
-  const addItem = useCallback((name: string, price: string, priceNum: number) => {
+  const addItem = useCallback((name: string, price: string, priceNum: number, productId?: string) => {
     setItems(prev => {
       const existing = prev.find(i => i.name === name)
       if (existing) return prev.map(i => i.name === name ? { ...i, qty: i.qty + 1 } : i)
-      return [...prev, { name, price, priceNum, qty: 1 }]
+      return [...prev, { name, price, priceNum, qty: 1, productId }]
     })
     setIsOpen(true)
   }, [])
