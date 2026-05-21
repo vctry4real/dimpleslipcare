@@ -2,9 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "dimpleslipcare",
+      "name": "web",
       "runtimeExecutable": "node",
       "runtimeArgs": ["../../../node_modules/next/dist/bin/next", "dev"],
+      "workingDirectory": "apps/web",
       "port": 3000,
       "autoPort": true
     }
