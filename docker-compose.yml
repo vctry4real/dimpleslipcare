@@ -1,7 +1,6 @@
-version: '3.9'
-
 # Local development stack — mirrors the Dokploy production layout
-# Usage: docker compose up -d
+# Usage: docker compose up -d postgres redis meilisearch minio
+# (Run the API directly: pnpm api:dev)
 
 services:
 
@@ -12,7 +11,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: dimpleslipcare
     ports:
-      - '5432:5432'
+      - '5434:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -56,7 +55,7 @@ services:
       dockerfile: apps/api/Dockerfile
     environment:
       NODE_ENV: development
-      DATABASE_URL: postgresql://dimples:password@postgres:5432/dimpleslipcare
+      DATABASE_URL: postgresql://dimples:password@postgres:5432/dimpleslipcare  # internal Docker network — no port remapping needed
       REDIS_HOST: redis
       REDIS_PORT: 6379
       FRONTEND_URL: http://localhost:3000

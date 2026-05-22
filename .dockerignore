@@ -1,0 +1,33 @@
+# Dependencies — installed fresh inside the image
+node_modules
+**/node_modules
+
+# Next.js build output
+apps/web/.next
+apps/web/out
+
+# NestJS build output
+apps/api/dist
+
+# Env files — never bake secrets into the image
+.env
+.env.*
+apps/api/.env
+apps/web/.env.local
+
+# pnpm store
+.pnpm-store
+
+# OS / editor
+.DS_Store
+*.pem
+
+# Git
+.git
+.gitignore
+
+# Test coverage
+coverage
+
+# TypeScript incremental
+*.tsbuildinfo
