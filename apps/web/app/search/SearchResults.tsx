@@ -2,8 +2,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { PRODUCTS } from '../data/products'
+import { PRODUCT_ART, formatPrice } from '../data/products'
 import { POSTS } from '../data/posts'
+import type { ApiProduct } from '../../lib/api'
 
 type ResultTab = 'all' | 'products' | 'journal'
 
@@ -11,7 +12,11 @@ function score(text: string, q: string): boolean {
   return text.toLowerCase().includes(q.toLowerCase())
 }
 
-export default function SearchResults() {
+interface Props {
+  products: ApiProduct[]
+}
+
+export default function SearchResults({ products }: Props) {
   const searchParams = useSearchParams()
   const router       = useRouter()
   const initialQ     = searchParams.get('q') ?? ''
@@ -31,7 +36,12 @@ export default function SearchResults() {
   }
 
   const matchedProducts = query
-    ? PRODUCTS.filter(p => score(p.nm, query) || score(p.blurb, query) || score(p.cat, query))
+    ? products.filter(p =>
+        score(p.name, query) ||
+        score(p.blurb, query) ||
+        score(p.category.slug, query) ||
+        score(p.description, query)
+      )
     : []
 
   const matchedPosts = query
@@ -148,18 +158,21 @@ export default function SearchResults() {
               <div className="sr-section">
                 <h2 className="sr-section-title">Products</h2>
                 <div className="sr-products-grid">
-                  {matchedProducts.map(p => (
-                    <Link key={p.slug} href={`/products/${p.slug}`} className="sr-product-card">
-                      <div className="sr-product-art">
-                        <p.art />
-                      </div>
-                      <div className="sr-product-body">
-                        <div className="sr-product-name">{p.nm}</div>
-                        <div className="sr-product-blurb">{p.blurb}</div>
-                        <div className="sr-product-price">{p.price}</div>
-                      </div>
-                    </Link>
-                  ))}
+                  {matchedProducts.map(p => {
+                    const art = PRODUCT_ART[p.slug]
+                    return (
+                      <Link key={p.slug} href={`/products/${p.slug}`} className="sr-product-card">
+                        <div className="sr-product-art">
+                          {art ? art() : null}
+                        </div>
+                        <div className="sr-product-body">
+                          <div className="sr-product-name">{p.name}</div>
+                          <div className="sr-product-blurb">{p.blurb}</div>
+                          <div className="sr-product-price">{formatPrice(p.price)}</div>
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
               </div>
             )}

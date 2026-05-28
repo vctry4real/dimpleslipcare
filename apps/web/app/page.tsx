@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { ApiProduct } from '../lib/api'
 import SiteHeader from './components/SiteHeader'
 import SiteHero from './components/SiteHero'
 import TrustStrip from './components/TrustStrip'
@@ -59,7 +60,20 @@ const websiteSchema = {
   url: 'https://dimpleslipcare.com',
 }
 
-export default function Home() {
+async function fetchProducts(): Promise<ApiProduct[]> {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api/v1'}/products`
+    const res = await fetch(url, { next: { revalidate: 60 } })
+    if (!res.ok) return []
+    return res.json()
+  } catch {
+    return []
+  }
+}
+
+export default async function Home() {
+  const products = await fetchProducts()
+
   return (
     <div className="site">
       <JsonLd data={orgSchema} />
@@ -67,7 +81,7 @@ export default function Home() {
       <SiteHeader />
       <SiteHero />
       <TrustStrip />
-      <ProductsSection />
+      <ProductsSection products={products} />
       <RitualSection />
       <TrainingsSection />
       <Testimonial />

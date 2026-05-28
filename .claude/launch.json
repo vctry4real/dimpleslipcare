@@ -3,9 +3,8 @@
   "configurations": [
     {
       "name": "web",
-      "runtimeExecutable": "node",
-      "runtimeArgs": ["../../../node_modules/next/dist/bin/next", "dev"],
-      "workingDirectory": "apps/web",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "web", "dev"],
       "port": 3000,
       "autoPort": true
     }

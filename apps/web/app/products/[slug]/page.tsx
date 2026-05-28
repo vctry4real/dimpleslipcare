@@ -5,22 +5,58 @@ import SiteFooter from '../../components/SiteFooter'
 import AddToBagButton from '../../components/AddToBagButton'
 import ProductTabs from '../../components/ProductTabs'
 import JsonLd from '../../components/JsonLd'
-import { PRODUCTS } from '../../data/products'
+import { PRODUCT_ART, formatPrice, formatRating } from '../../data/products'
+import type { ApiProduct } from '../../../lib/api'
 
-export async function generateStaticParams() {
-  return PRODUCTS.map(p => ({ slug: p.slug }))
+export const dynamic = 'force-dynamic'
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api/v1'
+
+async function getProduct(slug: string): Promise<ApiProduct | null> {
+  try {
+    const res = await fetch(`${API}/products/${encodeURIComponent(slug)}`, {
+      cache: 'no-store',
+    })
+    if (res.status === 404) return null
+    if (!res.ok) return null
+    return res.json()
+  } catch {
+    return null
+  }
+}
+
+async function getRelated(categorySlug: string, currentSlug: string): Promise<ApiProduct[]> {
+  try {
+    const res = await fetch(`${API}/products?category=${encodeURIComponent(categorySlug)}`, {
+      cache: 'no-store',
+    })
+    if (!res.ok) return []
+    const all: ApiProduct[] = await res.json()
+    const same = all.filter(p => p.slug !== currentSlug).slice(0, 3)
+    if (same.length >= 3) return same
+
+    // pad with products from other categories
+    const allRes = await fetch(`${API}/products`, { cache: 'no-store' })
+    if (!allRes.ok) return same
+    const allProducts: ApiProduct[] = await allRes.json()
+    const extra = allProducts.filter(p => p.slug !== currentSlug && p.category.slug !== categorySlug)
+    return [...same, ...extra].slice(0, 3)
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const p = PRODUCTS.find(p => p.slug === slug)
+  const p = await getProduct(slug)
   if (!p) return {}
+  const priceStr = formatPrice(p.price)
   return {
-    title: p.nm,
-    description: p.longDesc.slice(0, 160),
+    title: `${p.name} — Dimples Lipcare`,
+    description: p.description.slice(0, 160),
     openGraph: {
-      title: `${p.nm} — ${p.price}`,
-      description: p.longDesc.slice(0, 160),
+      title: `${p.name} — ${priceStr}`,
+      description: p.description.slice(0, 160),
       url: `https://dimpleslipcare.com/products/${p.slug}`,
     },
   }
@@ -28,26 +64,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const product = PRODUCTS.find(p => p.slug === slug)
+  const product = await getProduct(slug)
+
   if (!product) notFound()
 
-  const related = PRODUCTS
-    .filter(p => p.slug !== slug && p.cat === product.cat)
-    .slice(0, 3)
-    .concat(
-      PRODUCTS.filter(p => p.slug !== slug && p.cat !== product.cat)
-    )
-    .slice(0, 3)
+  const relatedProducts = await getRelated(product.category.slug, slug)
+  const art = PRODUCT_ART[product.slug]
+  const priceStr = formatPrice(product.price)
+  const priceNum = Math.round(product.price / 100)
 
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: product.nm,
-    description: product.longDesc,
+    name: product.name,
+    description: product.description,
     brand: { '@type': 'Brand', name: 'Dimples Lipcare' },
     offers: {
       '@type': 'Offer',
-      price: product.priceNum,
+      price: priceNum,
       priceCurrency: 'NGN',
       availability: 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: 'Dimples Lipcare' },
@@ -66,7 +100,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <span>›</span>
           <Link href="/shop" style={{ color: 'var(--fg-3)', textDecoration: 'none' }}>Shop</Link>
           <span>›</span>
-          <span style={{ color: 'var(--fg-1)' }}>{product.nm}</span>
+          <span style={{ color: 'var(--fg-1)' }}>{product.name}</span>
         </nav>
       </div>
 
@@ -77,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           {/* Art column */}
           <div className="pdp-art-wrap">
             <div style={{ transform: 'scale(1.25)', transformOrigin: 'center' }}>
-              {product.art()}
+              {art ? art() : null}
             </div>
           </div>
 
@@ -87,25 +121,28 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.badge && (
                 <span className="pdp-badge">{product.badge}</span>
               )}
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'var(--fg-3)' }}>{product.rating}</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, color: 'var(--fg-3)' }}>
+                {formatRating(product.reviewCount)}
+              </span>
             </div>
 
-            <h1 className="pdp-name">{product.nm}</h1>
-            <p className="pdp-price">{product.price}</p>
+            <h1 className="pdp-name">{product.name}</h1>
+            <p className="pdp-price">{priceStr}</p>
             <p className="pdp-blurb">{product.blurb}</p>
 
             <hr className="pdp-divider" />
 
             <AddToBagButton
-              name={product.nm}
-              price={product.price}
-              priceNum={product.priceNum}
+              name={product.name}
+              price={priceStr}
+              priceNum={priceNum}
+              productId={product.id}
             />
 
             <hr className="pdp-divider" />
 
             <div className="pdp-meta">
-              <span className="pdp-meta-pill">{product.meta}</span>
+              <span className="pdp-meta-pill">{product.category.name}</span>
               <span className="pdp-meta-pill">Cruelty-free</span>
               <span className="pdp-meta-pill">Made in Lagos</span>
               <span className="pdp-meta-pill">Free shipping over ₦15k</span>
@@ -116,13 +153,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       {/* ── Tabs ─────────────────────────────────── */}
       <ProductTabs
-        description={product.longDesc}
-        ingredients={product.ingredients}
+        description={product.description}
+        ingredients={product.ingredients ?? ''}
         howToUse={product.howToUse}
       />
 
       {/* ── Related products ─────────────────────── */}
-      {related.length > 0 && (
+      {relatedProducts.length > 0 && (
         <section className="surface" style={{ background: 'var(--blush-50)', paddingTop: 'var(--s-16)', paddingBottom: 'var(--s-16)' }}>
           <div className="wrap">
             <div className="eyebrow" style={{ marginBottom: 'var(--s-3)' }}>You might also like</div>
@@ -130,22 +167,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               Complete your ritual.
             </h2>
             <div className="products-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-              {related.map((p, i) => (
-                <Link className="product-card" key={i} href={`/products/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <div className="photo">
-                    <div className="sheen" />
-                    {p.badge && <span className="badge">{p.badge}</span>}
-                    <span className="price-pill">{p.price}</span>
-                    {p.art()}
-                  </div>
-                  <h3>{p.nm}</h3>
-                  <p className="blurb">{p.blurb}</p>
-                  <div className="row">
-                    <span className="stars">{p.rating}</span>
-                    <span className="add">View →</span>
-                  </div>
-                </Link>
-              ))}
+              {relatedProducts.map((p) => {
+                const relArt = PRODUCT_ART[p.slug]
+                return (
+                  <Link className="product-card" key={p.id} href={`/products/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <div className="photo">
+                      <div className="sheen" />
+                      {p.badge && <span className="badge">{p.badge}</span>}
+                      <span className="price-pill">{formatPrice(p.price)}</span>
+                      {relArt ? relArt() : null}
+                    </div>
+                    <h3>{p.name}</h3>
+                    <p className="blurb">{p.blurb}</p>
+                    <div className="row">
+                      <span className="stars">{formatRating(p.reviewCount)}</span>
+                      <span className="add">View →</span>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </section>

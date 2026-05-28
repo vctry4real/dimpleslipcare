@@ -228,6 +228,41 @@ export const orders = {
   get: (id: string) => req<Order>(`/orders/${id}`),
 }
 
+// ─── Products ─────────────────────────────────────────────────────────────
+
+export interface ApiProductImage {
+  url: string
+  alt?: string | null
+  isPrimary: boolean
+  sortOrder: number
+}
+
+export interface ApiProduct {
+  id: string
+  name: string
+  slug: string
+  blurb: string
+  description: string
+  ingredients: string | null
+  howToUse: string[]
+  /** Price in kobo (NGN × 100) */
+  price: number
+  badge: string | null
+  rating: number
+  reviewCount: number
+  isActive: boolean
+  category: { name: string; slug: string }
+  images: ApiProductImage[]
+  inventory?: { quantity: number; reserved: number }
+}
+
+export const products = {
+  list: (category?: string) =>
+    req<ApiProduct[]>(`/products${category ? `?category=${encodeURIComponent(category)}` : ''}`),
+
+  get: (slug: string) => req<ApiProduct>(`/products/${encodeURIComponent(slug)}`),
+}
+
 // ─── Payments ──────────────────────────────────────────────────────────────
 
 export interface PaystackInitResult {

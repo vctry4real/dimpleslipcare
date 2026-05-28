@@ -1,46 +1,31 @@
-# ── Build stage ───────────────────────────────────────────────────────────────
-FROM node:20-alpine AS builder
+# ── Build & run in one stage (simpler; optimise later if image size matters) ──
+FROM node:22-alpine
 WORKDIR /app
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@10 --activate
 
-# Copy workspace manifests
-COPY pnpm-workspace.yaml package.json ./
-COPY packages/types/package.json ./packages/types/
-COPY apps/api/package.json ./apps/api/
-
-# Install dependencies
+# Install deps (layer-cached until manifests change)
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY packages/types/package.json packages/types/package.json
+COPY apps/api/package.json apps/api/package.json
 RUN pnpm install --frozen-lockfile
 
 # Copy source
-COPY packages/types ./packages/types
-COPY apps/api ./apps/api
+COPY packages/types packages/types
+COPY apps/api apps/api
+
+# Build @dimples/types (pure declarations → JS; needed at runtime via symlink)
+RUN node apps/api/node_modules/.bin/tsc -p packages/types/tsconfig.json
 
 # Generate Prisma client
-RUN pnpm --filter api prisma:generate
+RUN cd apps/api && node_modules/.bin/prisma generate
 
-# Build NestJS
+# Compile NestJS
 RUN pnpm --filter api build
-
-# ── Production stage ──────────────────────────────────────────────────────────
-FROM node:20-alpine AS runner
-WORKDIR /app
-
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# Only production deps
-COPY pnpm-workspace.yaml package.json ./
-COPY packages/types/package.json ./packages/types/
-COPY apps/api/package.json ./apps/api/
-RUN pnpm install --frozen-lockfile --prod
-
-# Copy built output and Prisma client
-COPY --from=builder /app/apps/api/dist ./apps/api/dist
-COPY --from=builder /app/node_modules/.pnpm ./node_modules/.pnpm
-COPY apps/api/prisma ./apps/api/prisma
 
 ENV NODE_ENV=production
 EXPOSE 4000
 
-CMD ["sh", "-c", "node apps/api/dist/main"]
+# Run migrations then start the server
+CMD ["sh", "-c", "cd apps/api && node_modules/.bin/prisma migrate deploy && cd /app && exec node apps/api/dist/apps/api/src/main"]

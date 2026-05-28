@@ -1,10 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { PRODUCTS } from '../data/products'
+import { PRODUCT_ART, formatPrice, formatRating } from '../data/products'
 import { useCart } from '../context/CartContext'
+import type { ApiProduct } from '../../lib/api'
 
-export default function ProductsSection() {
+interface Props {
+  products: ApiProduct[]
+}
+
+export default function ProductsSection({ products }: Props) {
   const { addItem } = useCart()
 
   return (
@@ -20,34 +25,44 @@ export default function ProductsSection() {
           </p>
         </div>
         <div className="products-grid">
-          {PRODUCTS.map((p, i) => (
-            <Link
-              key={i}
-              className="product-card"
-              href={`/products/${p.slug}`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-              data-reveal
-              data-reveal-delay={String(i * 80)}
-            >
-              <div className="photo">
-                <div className="sheen" />
-                {p.badge && <span className="badge">{p.badge}</span>}
-                <span className="price-pill">{p.price}</span>
-                {p.art()}
-              </div>
-              <h3>{p.nm}</h3>
-              <p className="blurb">{p.blurb}</p>
-              <div className="row">
-                <span className="stars">{p.rating}</span>
-                <button
-                  className="add"
-                  onClick={e => { e.preventDefault(); e.stopPropagation(); addItem(p.nm, p.price, p.priceNum) }}
-                >
-                  Add to bag →
-                </button>
-              </div>
-            </Link>
-          ))}
+          {products.map((p, i) => {
+            const art = PRODUCT_ART[p.slug]
+            const priceStr = formatPrice(p.price)
+            const priceNum = p.price / 100
+
+            return (
+              <Link
+                key={p.id}
+                className="product-card"
+                href={`/products/${p.slug}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                data-reveal
+                data-reveal-delay={String(i * 80)}
+              >
+                <div className="photo">
+                  <div className="sheen" />
+                  {p.badge && <span className="badge">{p.badge}</span>}
+                  <span className="price-pill">{priceStr}</span>
+                  {art ? art() : null}
+                </div>
+                <h3>{p.name}</h3>
+                <p className="blurb">{p.blurb}</p>
+                <div className="row">
+                  <span className="stars">{formatRating(p.reviewCount)}</span>
+                  <button
+                    className="add"
+                    onClick={e => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      addItem(p.name, priceStr, priceNum, p.id)
+                    }}
+                  >
+                    Add to bag →
+                  </button>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>

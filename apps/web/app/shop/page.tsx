@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import SiteHeader from '../components/SiteHeader'
 import SiteFooter from '../components/SiteFooter'
 import ShopContent from './ShopContent'
+import type { ApiProduct } from '../../lib/api'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Shop — Hand-poured lip products | Dimples Lipcare',
@@ -13,7 +16,20 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ShopPage() {
+async function fetchProducts(): Promise<ApiProduct[]> {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api/v1'}/products`
+    const res = await fetch(url, { cache: 'no-store' })
+    if (!res.ok) return []
+    return res.json()
+  } catch {
+    return []
+  }
+}
+
+export default async function ShopPage() {
+  const products = await fetchProducts()
+
   return (
     <div className="site">
       <SiteHeader />
@@ -26,7 +42,7 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <ShopContent />
+      <ShopContent products={products} />
 
       <SiteFooter />
     </div>

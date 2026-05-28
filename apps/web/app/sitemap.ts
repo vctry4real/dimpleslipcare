@@ -1,10 +1,22 @@
 import type { MetadataRoute } from 'next'
-import { PRODUCTS } from './data/products'
 import { POSTS } from './data/posts'
+import type { ApiProduct } from '../lib/api'
 
 const BASE = 'https://dimpleslipcare.com'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+async function fetchProductSlugs(): Promise<string[]> {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api/v1'}/products`
+    const res = await fetch(url, { next: { revalidate: 3600 } })
+    if (!res.ok) return []
+    const products: ApiProduct[] = await res.json()
+    return products.map(p => p.slug)
+  } catch {
+    return []
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE,                lastModified: new Date(), changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${BASE}/shop`,      lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.9 },
@@ -21,8 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/terms`,      lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.3 },
   ]
 
-  const productRoutes: MetadataRoute.Sitemap = PRODUCTS.map(p => ({
-    url: `${BASE}/products/${p.slug}`,
+  const slugs = await fetchProductSlugs()
+  const productRoutes: MetadataRoute.Sitemap = slugs.map(slug => ({
+    url: `${BASE}/products/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.85,

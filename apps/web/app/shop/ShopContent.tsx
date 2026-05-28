@@ -2,21 +2,30 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { PRODUCTS, type Category } from '../data/products'
+import { PRODUCT_ART, formatPrice, formatRating } from '../data/products'
 import { useCart } from '../context/CartContext'
+import type { ApiProduct } from '../../lib/api'
 
-const FILTERS: { label: string; value: Category | 'all' }[] = [
+const FILTERS = [
   { label: 'All products', value: 'all' },
   { label: 'Scrubs & balms', value: 'scrubs' },
   { label: 'Glosses & oils', value: 'glosses' },
   { label: 'Treatments', value: 'treatments' },
   { label: 'Bundles', value: 'bundles' },
-]
+] as const
 
-export default function ShopContent() {
-  const [filter, setFilter] = useState<Category | 'all'>('all')
+type FilterValue = typeof FILTERS[number]['value']
+
+interface Props {
+  products: ApiProduct[]
+}
+
+export default function ShopContent({ products }: Props) {
+  const [filter, setFilter] = useState<FilterValue>('all')
   const { addItem } = useCart()
-  const visible = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter)
+
+  const visible =
+    filter === 'all' ? products : products.filter(p => p.category.slug === filter)
 
   return (
     <section className="surface products" style={{ paddingTop: 0 }}>
@@ -39,35 +48,44 @@ export default function ShopContent() {
           </p>
         ) : (
           <div className="products-grid">
-            {visible.map((p, i) => (
-              <Link
-                key={i}
-                className="product-card"
-                href={`/products/${p.slug}`}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-                data-reveal
-                data-reveal-delay={String(i * 80)}
-              >
-                <div className="photo">
-                  <div className="sheen" />
-                  {p.badge && <span className="badge">{p.badge}</span>}
-                  <span className="price-pill">{p.price}</span>
-                  {p.art()}
-                </div>
-                <h3>{p.nm}</h3>
-                <p className="blurb">{p.blurb}</p>
-                <p className="blurb" style={{ color: 'var(--fg-3)', fontSize: '12px', marginTop: 2 }}>{p.meta}</p>
-                <div className="row">
-                  <span className="stars">{p.rating}</span>
-                  <button
-                    className="add"
-                    onClick={e => { e.preventDefault(); e.stopPropagation(); addItem(p.nm, p.price, p.priceNum) }}
-                  >
-                    Add to bag →
-                  </button>
-                </div>
-              </Link>
-            ))}
+            {visible.map((p, i) => {
+              const art = PRODUCT_ART[p.slug]
+              const priceStr = formatPrice(p.price)
+              const priceNum = p.price / 100
+
+              return (
+                <Link
+                  key={p.id}
+                  className="product-card"
+                  href={`/products/${p.slug}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  data-reveal
+                  data-reveal-delay={String(i * 80)}
+                >
+                  <div className="photo">
+                    <div className="sheen" />
+                    {p.badge && <span className="badge">{p.badge}</span>}
+                    <span className="price-pill">{priceStr}</span>
+                    {art ? art() : null}
+                  </div>
+                  <h3>{p.name}</h3>
+                  <p className="blurb">{p.blurb}</p>
+                  <div className="row">
+                    <span className="stars">{formatRating(p.reviewCount)}</span>
+                    <button
+                      className="add"
+                      onClick={e => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        addItem(p.name, priceStr, priceNum, p.id)
+                      }}
+                    >
+                      Add to bag →
+                    </button>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         )}
       </div>
