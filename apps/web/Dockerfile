@@ -15,7 +15,7 @@ COPY packages/types packages/types
 COPY apps/web apps/web
 
 # Build @dimples/types so the workspace symlink resolves at Next.js build time
-RUN node apps/web/node_modules/.bin/tsc -p packages/types/tsconfig.json 2>/dev/null || true
+RUN node apps/web/node_modules/typescript/bin/tsc -p packages/types/tsconfig.json 2>/dev/null || true
 
 # Build args baked into the client bundle (NEXT_PUBLIC_* must be known at build time)
 ARG NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1
