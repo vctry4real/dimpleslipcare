@@ -2,8 +2,9 @@
 FROM node:22-alpine
 WORKDIR /app
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@10 --activate
+# Install pnpm + openssl (required by Prisma on Alpine)
+RUN corepack enable && corepack prepare pnpm@10 --activate && \
+    apk add --no-cache openssl
 
 # Install deps (layer-cached until manifests change)
 COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
@@ -16,7 +17,7 @@ COPY packages/types packages/types
 COPY apps/api apps/api
 
 # Build @dimples/types (pure declarations → JS; needed at runtime via symlink)
-RUN node apps/api/node_modules/.bin/tsc -p packages/types/tsconfig.json
+RUN node apps/api/node_modules/typescript/bin/tsc -p packages/types/tsconfig.json
 
 # Generate Prisma client
 RUN cd apps/api && node_modules/.bin/prisma generate
