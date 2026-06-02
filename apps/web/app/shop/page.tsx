@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Shop Dimples Lipcare',
     description: 'Six hand-poured lip products. Plant-derived, cruelty-free, made in Lagos.',
-    url: 'https://dimpleslipcare.com/shop',
+    url: 'https://dimplesbeauty.vctry4real.dev/shop',
   },
 }
 

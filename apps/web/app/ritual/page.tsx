@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'The Dimples Lipcare Ritual',
     description: 'Three steps, five minutes. A complete lipcare loop — scrub, treat, glaze.',
-    url: 'https://dimpleslipcare.com/ritual',
+    url: 'https://dimplesbeauty.vctry4real.dev/ritual',
   },
 }
 import SiteFooter from '../components/SiteFooter'

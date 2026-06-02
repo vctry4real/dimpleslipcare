@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'How Dimples Lipcare collects, uses, and protects your data. In plain English: we hold the minimum we need to run the shop. We never sell it, rarely share it.',
   openGraph: {
     title: 'Privacy Policy — Dimples Lipcare',
-    url: 'https://dimpleslipcare.com/privacy',
+    url: 'https://dimplesbeauty.vctry4real.dev/privacy',
   },
 }
 

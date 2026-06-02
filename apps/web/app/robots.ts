@@ -3,6 +3,6 @@ import type { MetadataRoute } from 'next'
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: '*', allow: '/' },
-    sitemap: 'https://dimpleslipcare.com/sitemap.xml',
+    sitemap: 'https://dimplesbeauty.vctry4real.dev/sitemap.xml',
   }
 }

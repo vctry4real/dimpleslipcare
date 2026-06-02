@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Wholesale — Dimples Lipcare',
     description: 'Stock Dimples in your salon, spa, or boutique. Apply for a wholesale account.',
-    url: 'https://dimpleslipcare.com/wholesale',
+    url: 'https://dimplesbeauty.vctry4real.dev/wholesale',
   },
 }
 

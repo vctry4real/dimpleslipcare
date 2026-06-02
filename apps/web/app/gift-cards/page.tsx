@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Gift Cards — Dimples Lipcare',
     description: 'Give the gift of soft, healthy lips. Email delivery, never expires.',
-    url: 'https://dimpleslipcare.com/gift-cards',
+    url: 'https://dimplesbeauty.vctry4real.dev/gift-cards',
   },
 }
 

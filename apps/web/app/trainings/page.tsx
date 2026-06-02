@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Dimples Lipcare Training Programme',
     description: 'Build your own lipcare brand — start to shelf. Five modules, 12 weeks, next cohort April 2026.',
-    url: 'https://dimpleslipcare.com/trainings',
+    url: 'https://dimplesbeauty.vctry4real.dev/trainings',
   },
 }
 import SiteFooter from '../components/SiteFooter'

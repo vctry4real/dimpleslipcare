@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { POSTS } from './data/posts'
 import type { ApiProduct } from '../lib/api'
 
-const BASE = 'https://dimpleslipcare.com'
+const BASE = 'https://dimplesbeauty.vctry4real.dev'
 
 async function fetchProductSlugs(): Promise<string[]> {
   try {

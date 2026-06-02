@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Dimples Points — Rewards',
     description: 'Earn on every purchase. Redeem for discounts.',
-    url: 'https://dimpleslipcare.com/rewards',
+    url: 'https://dimplesbeauty.vctry4real.dev/rewards',
   },
 }
 

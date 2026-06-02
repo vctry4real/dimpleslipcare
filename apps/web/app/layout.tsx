@@ -24,14 +24,14 @@ const lyla = localFont({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dimpleslipcare.com'),
+  metadataBase: new URL('https://dimplesbeauty.vctry4real.dev'),
   title: {
     default: 'Dimples Lipcare — Hand-poured lipcare from Lagos',
     template: '%s | Dimples Lipcare',
   },
   description: 'A hand-poured lipcare ritual — scrubs, balms, glosses, oils, and a pink-lips treatment that actually works. From one tiny pink studio in Lagos.',
   keywords: ['lip care', 'lip scrub', 'lip balm', 'lip gloss', 'pink lips treatment', 'Lagos', 'Nigeria', 'hand-poured', 'natural skincare'],
-  authors: [{ name: 'Dimples Lipcare', url: 'https://dimpleslipcare.com' }],
+  authors: [{ name: 'Dimples Lipcare', url: 'https://dimplesbeauty.vctry4real.dev' }],
   creator: 'Dimples Lipcare',
   openGraph: {
     type: 'website',

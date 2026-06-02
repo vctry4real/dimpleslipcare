@@ -8,7 +8,7 @@ const sections: LegalSection[] = [
     h2: '1. About these terms',
     body: (
       <>
-        <p>By using dimpleslipcare.com or buying from us, you agree to these terms. They cover everything we do — selling product, running trainings, sending you emails. If you don&apos;t agree with any part, please don&apos;t use the site.</p>
+        <p>By using dimplesbeauty.vctry4real.dev or buying from us, you agree to these terms. They cover everything we do — selling product, running trainings, sending you emails. If you don&apos;t agree with any part, please don&apos;t use the site.</p>
         <p>&ldquo;You&rdquo; means you. &ldquo;We&rdquo;, &ldquo;us&rdquo;, &ldquo;Dimples&rdquo; means Dimples Lipcare Ltd, a Nigerian limited company at 42 Allen Avenue, Ikeja, Lagos.</p>
       </>
     ),

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Journal — Dimples Lipcare',
     description: 'Formulation deep-dives, founder essays, and notes from the studio.',
-    url: 'https://dimpleslipcare.com/journal',
+    url: 'https://dimplesbeauty.vctry4real.dev/journal',
   },
 }
 

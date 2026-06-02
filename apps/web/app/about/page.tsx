@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Our Story — Dimples Lipcare',
     description: 'One tiny pink studio in Lagos. Hand-poured since 2022.',
-    url: 'https://dimpleslipcare.com/about',
+    url: 'https://dimplesbeauty.vctry4real.dev/about',
   },
 }
 

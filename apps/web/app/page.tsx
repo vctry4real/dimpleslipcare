@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Dimples Lipcare — Hand-poured lipcare from Lagos',
     description: 'A hand-poured lipcare ritual. Scrubs, balms, glosses, oils, and a pink-lips treatment that actually works.',
-    url: 'https://dimpleslipcare.com',
+    url: 'https://dimplesbeauty.vctry4real.dev',
     siteName: 'Dimples Lipcare',
     locale: 'en_NG',
     type: 'website',
@@ -33,7 +33,7 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Dimples Lipcare',
-  url: 'https://dimpleslipcare.com',
+  url: 'https://dimplesbeauty.vctry4real.dev',
   description: 'Hand-poured lipcare from Lagos. Scrubs, balms, glosses, oils, and a pink-lips treatment.',
   address: {
     '@type': 'PostalAddress',
@@ -57,7 +57,7 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Dimples Lipcare',
-  url: 'https://dimpleslipcare.com',
+  url: 'https://dimplesbeauty.vctry4real.dev',
 }
 
 async function fetchProducts(): Promise<ApiProduct[]> {

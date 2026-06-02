@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Dimples Lipcare',
     description: "We're a tiny team. We actually read everything.",
-    url: 'https://dimpleslipcare.com/contact',
+    url: 'https://dimplesbeauty.vctry4real.dev/contact',
   },
 }
 

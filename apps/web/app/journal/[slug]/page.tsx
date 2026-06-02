@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${post.title} — Dimples Journal`,
       description: post.excerpt,
-      url: `https://dimpleslipcare.com/journal/${post.slug}`,
+      url: `https://dimplesbeauty.vctry4real.dev/journal/${post.slug}`,
     },
   }
 }
@@ -39,8 +39,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     description: post.excerpt,
     datePublished: post.isoDate,
     author: { '@type': 'Organization', name: 'Dimples Lipcare' },
-    publisher: { '@type': 'Organization', name: 'Dimples Lipcare', url: 'https://dimpleslipcare.com' },
-    url: `https://dimpleslipcare.com/journal/${post.slug}`,
+    publisher: { '@type': 'Organization', name: 'Dimples Lipcare', url: 'https://dimplesbeauty.vctry4real.dev' },
+    url: `https://dimplesbeauty.vctry4real.dev/journal/${post.slug}`,
   }
 
   return (

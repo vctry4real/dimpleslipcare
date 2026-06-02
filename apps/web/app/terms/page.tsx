@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'The terms that govern buying from Dimples Lipcare — orders, shipping, returns, trainings, and your rights. Governed by Nigerian law.',
   openGraph: {
     title: 'Terms of Service — Dimples Lipcare',
-    url: 'https://dimpleslipcare.com/terms',
+    url: 'https://dimplesbeauty.vctry4real.dev/terms',
   },
 }
 

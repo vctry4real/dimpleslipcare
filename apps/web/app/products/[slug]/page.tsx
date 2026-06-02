@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${p.name} — ${priceStr}`,
       description: p.description.slice(0, 160),
-      url: `https://dimpleslipcare.com/products/${p.slug}`,
+      url: `https://dimplesbeauty.vctry4real.dev/products/${p.slug}`,
     },
   }
 }
