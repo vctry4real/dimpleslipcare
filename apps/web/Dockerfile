@@ -18,8 +18,8 @@ COPY apps/web apps/web
 RUN node apps/web/node_modules/typescript/bin/tsc -p packages/types/tsconfig.json 2>/dev/null || true
 
 # Build args baked into the client bundle (NEXT_PUBLIC_* must be known at build time)
-ARG NEXT_PUBLIC_API_URL=http://localhost:4000/api/v1
-ARG NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
+ARG NEXT_PUBLIC_API_URL=https://api.vctry4real.dev/api/v1
+ARG NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=pk_test_d2c3391365cd047df35fcfe734799b72b9cc45ae
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=$NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
 
