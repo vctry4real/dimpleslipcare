@@ -29,4 +29,13 @@ ENV NODE_ENV=production
 EXPOSE 4000
 
 # Run migrations then start the server
-CMD ["sh", "-c", "cd apps/api && node_modules/.bin/prisma migrate deploy && cd /app && exec node apps/api/dist/apps/api/src/main"]
+CMD ["sh", "-c", "\
+  echo '=== Starting API ===' && \
+  echo '=== Running migrations ===' && \
+  cd apps/api && node_modules/.bin/prisma migrate deploy && \
+  echo '=== Migrations done ===' && \
+  cd /app && \
+  echo '=== Entry file check ===' && \
+  ls apps/api/dist/apps/api/src/main.js 2>/dev/null && echo 'Entry file found' || (echo 'ERROR: entry file missing, listing dist:' && find apps/api/dist -name 'main.js' && exit 1) && \
+  echo '=== Starting NestJS ===' && \
+  exec node apps/api/dist/apps/api/src/main"]
